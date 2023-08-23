@@ -59,13 +59,13 @@ int print_string(va_list types, char buffer[],
 		if (flags & F_MINUS)
 		{
 			write(1, &str[0], length);
-			for (i = width - length; j > 0; i--)
+			for (j = width - length; j > 0; j--)
 				write(1, " ", 1);
 			return (width);
 		}
 		else
 		{
-			for (i = width - length; j > 0; i--)
+			for (j = width - length; j > 0; j--)
 				write(1, " ", 1);
 			write(1, &str[0], length);
 			return (width);
@@ -136,7 +136,7 @@ int print_int(va_list types, char buffer[],
 		num /= 10;
 	}
 
-	i++;
+	j++;
 
 	return (write_number(is_negative, j, buffer, flags, width, precision, size));
 }
@@ -165,15 +165,15 @@ UNUSED(flags);
 	UNUSED(precision);
 	UNUSED(size);
 
-	n = va_arg(types, unsigned int);
-	m = 2147483648; /* (2 ^ 31) */
+	k = va_arg(types, unsigned int);
+	l = 2147483648; /* (2 ^ 31) */
 	a[0] = k / l;
 	for (p = 1; p < 32; p++)
 	{
 		l /= 2;
 		a[p] = (k / l) % 2;
 	}
-	for (p = 0, sum = 0, count = 0; p < 32; i++)
+	for (p = 0, sum = 0, count = 0; p < 32; p++)
 	{
 		sum += a[p];
 		if (sum || p == 31)
